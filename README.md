@@ -128,38 +128,65 @@ http://localhost:3000
 | `npm run build` | Creates a production build |
 | `npm start` | Starts the production server after a successful build |
 
-## Testing
+## Testing Strategy
 
-The automated tests cover the main application behavior.
+The test suite focuses on behaviors that are most likely to break during future changes.
 
 ### Auto Delete Todo
 
-- Initial item order
-- Fruit and vegetable movement
-- Automatic return after 5 seconds
-- Manual return
-- Independent item timers
-- Timer cancellation
-- Timer cleanup on unmount
+The todo tests cover:
 
-### Department Summary
+- The exact initial item order from the assignment
+- Moving fruit and vegetable items to the correct columns
+- Automatic return after exactly 5 seconds
+- Manual return before the timer expires
+- Independent timers for multiple items
+- Timer cancellation after manual return
+- Cleanup of active timers when the component unmounts
 
-- Department grouping
+Fake timers are used instead of real delays, keeping the tests deterministic and fast.
+
+### Department Summary Transformation
+
+The transformation tests cover:
+
+- Grouping users by department
 - Male and female counts
 - Minimum and maximum age calculation
 - Hair color aggregation
-- User address mapping
-- Empty input handling
-- API success and upstream failure responses
-- Loading, error, and retry UI states
-- Alphabetical display order
-- Calculated table values
-- Expandable department details
+- Concatenated name to postal code mapping
+- Multiple departments
+- Empty input
+
+The transformer is tested separately as a pure function so its business logic can be verified without network or UI dependencies.
+
+### API Route
+
+The API route tests mock the upstream `fetch` request and verify:
+
+- The expected DummyJSON URL is requested
+- A successful response is transformed correctly
+- Upstream failures return HTTP `502`
+- A stable error response is returned to the client
+
+No real external requests are made during automated tests.
+
+### Department Summary UI
+
+The UI tests cover:
+
+- Loading state
+- Rendered department data and calculated totals
+- Alphabetical department order
+- Expandable hair color and address details
+- Error state
+- Retry behavior after a failed request
 
 ### Landing Page
 
-- Assignment cards are rendered
-- Card destinations are correct
+The landing page tests verify that both assignment cards are rendered and link to the correct routes.
+
+The project intentionally does not include end-to-end browser tests because the assignment behavior is already covered at the component, transformation, and route levels. Final user flows were also verified manually on the deployed application.
 
 Run all validation commands:
 
@@ -168,6 +195,45 @@ npm test
 npm run lint
 npm run build
 ```
+
+## Performance Considerations
+
+The optional department transformation was designed with performance in mind.
+
+### Single-pass aggregation
+
+All department summary fields are calculated within one pass over the users:
+
+- Gender counts
+- Minimum and maximum age
+- Hair color counts
+- User address mapping
+
+This gives the transformation a time complexity of:
+
+```text
+O(n)
+```
+
+where `n` is the number of users.
+
+The implementation avoids repeated filtering or scanning for each department. Department summaries and hair color counts are updated through direct object lookups during the same loop.
+
+### Response size
+
+The DummyJSON request uses `select` to request only the fields required by the transformation:
+
+```text
+firstName,lastName,age,gender,hair,address,company
+```
+
+This avoids downloading unused user fields.
+
+### Memory usage
+
+Additional temporary storage for age bounds is proportional to the number of departments. The final address mapping necessarily grows with the number of users because it is part of the required output.
+
+No time-based performance assertion or benchmark is included in the normal test suite because fixed duration limits can become unreliable across different machines and CI environments.
 
 ## API
 
