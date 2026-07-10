@@ -123,12 +123,24 @@ export default function AutoDeleteTodo() {
           <h1 className="text-3xl font-bold tracking-normal sm:text-4xl">
             Auto Delete Todo List
           </h1>
-          <a
-            href="/department-summary"
-            className="mt-2 inline-block text-sm font-medium text-zinc-600 underline-offset-4 hover:text-zinc-950 hover:underline"
+          <nav
+            aria-label="Assignment navigation"
+            className="mt-2 flex flex-col items-center justify-center gap-2 text-sm font-medium text-zinc-600 sm:flex-row"
           >
-            View Optional Department Summary
-          </a>
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a
+              href="/"
+              className="underline-offset-4 hover:text-zinc-950 hover:underline"
+            >
+              Back to Assignment Home
+            </a>
+            <a
+              href="/department-summary"
+              className="underline-offset-4 hover:text-zinc-950 hover:underline"
+            >
+              View Optional Department Summary
+            </a>
+          </nav>
         </header>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
