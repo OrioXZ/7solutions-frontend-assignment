@@ -6,7 +6,7 @@ import AutoDeleteTodo from "./auto-delete-todo";
 Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true });
 
 function renderTodoList() {
-  render(<AutoDeleteTodo />);
+  return render(<AutoDeleteTodo />);
 }
 
 function getColumn(title: string) {
@@ -122,7 +122,10 @@ describe("AutoDeleteTodo", () => {
     renderTodoList();
 
     clickItemInColumn("Main List", "Apple");
+    expect(vi.getTimerCount()).toBe(1);
+
     clickItemInColumn("Fruit", "Apple");
+    expect(vi.getTimerCount()).toBe(0);
 
     expect(getColumn("Fruit").queryByRole("button", { name: "Apple" })).toBeNull();
     expect(getColumnItemNames("Main List")).toEqual([
@@ -166,5 +169,18 @@ describe("AutoDeleteTodo", () => {
       "Apple",
       "Broccoli",
     ]);
+  });
+
+  test("clears active timers when unmounted", () => {
+    const { unmount } = renderTodoList();
+
+    clickItemInColumn("Main List", "Apple");
+    clickItemInColumn("Main List", "Broccoli");
+
+    expect(vi.getTimerCount()).toBe(2);
+
+    unmount();
+
+    expect(vi.getTimerCount()).toBe(0);
   });
 });
