@@ -13,23 +13,12 @@ export default function DepartmentSummaryPage() {
     <main className="min-h-screen bg-zinc-100 px-4 py-8 text-zinc-950 sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
         <header className="flex flex-col gap-3">
-          <nav
-            aria-label="Assignment navigation"
-            className="flex flex-col gap-2 text-sm font-medium text-zinc-600 sm:flex-row"
+          <Link
+            href="/"
+            className="text-sm font-medium text-zinc-600 underline-offset-4 hover:text-zinc-950 hover:underline"
           >
-            <Link
-              href="/"
-              className="underline-offset-4 hover:text-zinc-950 hover:underline"
-            >
-              Back to Assignment Home
-            </Link>
-            <Link
-              href="/auto-delete-todo"
-              className="underline-offset-4 hover:text-zinc-950 hover:underline"
-            >
-              Open Auto Delete Todo
-            </Link>
-          </nav>
+            ← Back to Assignment Home
+          </Link>
           <div>
             <h1 className="text-3xl font-bold tracking-normal sm:text-4xl">
               Department Summary

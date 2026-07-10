@@ -19,7 +19,7 @@ const technologies = [
 export default function Home() {
   return (
     <main className="min-h-screen bg-zinc-100 px-4 py-8 text-zinc-950 sm:px-6 lg:px-8">
-      <div className="mx-auto flex w-full max-w-5xl flex-col gap-8">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-8">
         <header className="max-w-3xl">
           <h1 className="text-3xl font-bold tracking-normal sm:text-4xl">
             7Solutions Frontend Assignment
@@ -32,45 +32,43 @@ export default function Home() {
         </header>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          <section className="flex flex-col rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-semibold text-zinc-500">
-              Core Assignment
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold text-zinc-950">
-              Auto Delete Todo List
-            </h2>
-            <p className="mt-3 flex-1 text-sm leading-6 text-zinc-600">
-              Move fruit and vegetable items into their matching columns, where
-              each item automatically returns to the main list after 5 seconds
-              unless it is returned manually first.
-            </p>
-            <Link
-              href="/auto-delete-todo"
-              className="mt-5 text-sm font-medium text-zinc-950 underline-offset-4 hover:underline"
-            >
-              Open Auto Delete Todo
-            </Link>
-          </section>
+          <Link
+            href="/auto-delete-todo"
+            className="block cursor-pointer rounded-lg border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-zinc-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-100"
+          >
+            <article className="flex h-full flex-col">
+              <p className="text-sm font-semibold text-zinc-500">
+                Core Assignment
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold text-zinc-950">
+                Auto Delete Todo List
+              </h2>
+              <p className="mt-3 flex-1 text-sm leading-6 text-zinc-600">
+                Move fruit and vegetable items into their matching columns,
+                where each item automatically returns to the main list after 5
+                seconds unless it is returned manually first.
+              </p>
+            </article>
+          </Link>
 
-          <section className="flex flex-col rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-semibold text-zinc-500">
-              Optional Assignment
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold text-zinc-950">
-              Department Summary
-            </h2>
-            <p className="mt-3 flex-1 text-sm leading-6 text-zinc-600">
-              DummyJSON users are grouped by department through the internal
-              API, with the transformation performed in a single pass before
-              the summary is displayed.
-            </p>
-            <Link
-              href="/department-summary"
-              className="mt-5 text-sm font-medium text-zinc-950 underline-offset-4 hover:underline"
-            >
-              Open Department Summary
-            </Link>
-          </section>
+          <Link
+            href="/department-summary"
+            className="block cursor-pointer rounded-lg border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-zinc-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-100"
+          >
+            <article className="flex h-full flex-col">
+              <p className="text-sm font-semibold text-zinc-500">
+                Optional Assignment
+              </p>
+              <h2 className="mt-2 text-2xl font-semibold text-zinc-950">
+                Department Summary
+              </h2>
+              <p className="mt-3 flex-1 text-sm leading-6 text-zinc-600">
+                DummyJSON users are grouped by department through the internal
+                API, with the transformation performed in a single pass before
+                the summary is displayed.
+              </p>
+            </article>
+          </Link>
         </div>
 
         <section className="rounded-lg border border-zinc-200 bg-white p-6 shadow-sm">

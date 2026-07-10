@@ -18,17 +18,17 @@ describe("assignment landing page", () => {
     ).toBeDefined();
   });
 
-  test("renders assignment links with the correct destinations", () => {
+  test("renders clickable assignment cards with the correct destinations", () => {
     render(<Home />);
 
     expect(
       screen
-        .getByRole("link", { name: "Open Auto Delete Todo" })
+        .getByRole("link", { name: /Auto Delete Todo List/ })
         .getAttribute("href"),
     ).toBe("/auto-delete-todo");
     expect(
       screen
-        .getByRole("link", { name: "Open Department Summary" })
+        .getByRole("link", { name: /Department Summary/ })
         .getAttribute("href"),
     ).toBe("/department-summary");
   });
