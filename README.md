@@ -97,7 +97,7 @@ src/
 
 ## Getting Started
 
-Node.js 22 is recommended to match the deployment environment.
+Node.js 24 is recommended for local development.
 
 Install dependencies:
 
