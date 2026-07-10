@@ -123,6 +123,12 @@ export default function AutoDeleteTodo() {
           <h1 className="text-3xl font-bold tracking-normal sm:text-4xl">
             Auto Delete Todo List
           </h1>
+          <a
+            href="/department-summary"
+            className="mt-2 inline-block text-sm font-medium text-zinc-600 underline-offset-4 hover:text-zinc-950 hover:underline"
+          >
+            View Optional Department Summary
+          </a>
         </header>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
