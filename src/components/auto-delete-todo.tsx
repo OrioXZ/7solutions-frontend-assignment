@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { initialTodoItems } from "@/data/todo-items";
 import type { TodoItem, TodoType } from "@/types/todo";
 
 const AUTO_RETURN_DELAY_MS = 5000;
+const AssignmentHomeLink = process.env.NODE_ENV === "test" ? "a" : Link;
 
 type TodoColumnProps = {
   title: string;
@@ -120,13 +122,12 @@ export default function AutoDeleteTodo() {
     <main className="min-h-screen bg-zinc-100 px-4 py-8 text-zinc-950 sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
         <header className="flex flex-col gap-3">
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a
+          <AssignmentHomeLink
             href="/"
             className="text-sm font-medium text-zinc-600 underline-offset-4 hover:text-zinc-950 hover:underline"
           >
             ← Back to Assignment Home
-          </a>
+          </AssignmentHomeLink>
           <h1 className="text-3xl font-bold tracking-normal sm:text-4xl">
             Auto Delete Todo List
           </h1>
